@@ -20,11 +20,11 @@ describe('My First Test', () => {
   it('Selected Status 404 ', () => {
     cy.statusSelector('#selector-status','404',statuses[404].message);
   });
-  
-  // Object.keys(statuses).map(statusCode=>{
-  //   it(`Selected Status ${statusCode} `, () => {
-  //     cy.statusSelector('#selector-status',`${statusCode}`,statuses[statusCode].message);
-  //   });
-  // })
+
+  Object.keys(statuses).map(statusCode=>{
+    it(`Selected Status ${statusCode} `, () => {
+      cy.statusSelector('#selector-status',`${statusCode}`,statuses[statusCode].message);
+    });
+  })
  
 });
