@@ -18,7 +18,7 @@ const [currentMessage, setCurrentMessage] = useState('');
         <h1>Tell me what this status mean</h1>
       </header>
       <article>
-        <Select className="select-status" options={options} onChange={handleOnChange} />
+        <Select id="selector-status" options={options} onChange={handleOnChange} />
         <p>{currentMessage}</p>
         <img className="img-cato" src={`https://http.cat/${currentStatus}`} alt={`cato-${currentMessage}`}/>
       </article>
