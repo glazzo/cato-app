@@ -1,29 +1,3 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add("login", (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add("drag", { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add("dismiss", { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
-
 Cypress.Commands.add("chooseReactSelectOption", (selector, text, option) => {
   cy
     .get(`${selector} input`)
@@ -37,7 +11,7 @@ Cypress.Commands.add("chooseReactSelectOption", (selector, text, option) => {
 
 Cypress.Commands.add("statusSelector",(selector, status, expectedMessage)=>{
     cy.chooseReactSelectOption(selector, status, status);
-    cy.get('p').contains(expectedMessage);
-    cy.get('img').invoke('attr', 'src')
+    cy.get('p[data-cy="status-message"]').contains(expectedMessage);
+    cy.get('img[data-cy="status-image"]').invoke('attr', 'src')
       .should('include', status)
 })

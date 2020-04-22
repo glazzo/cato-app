@@ -5,15 +5,15 @@ describe('My First Test', () => {
   });
   it('Selected Status 200 ', () => {
     cy.chooseReactSelectOption('#selector-status', '200', '200');
-    cy.get('p').contains('OK');
-    cy.get('img').invoke('attr', 'src')
+    cy.get('p[data-cy="status-message"]').contains('OK');
+    cy.get('img[data-cy="status-image"]').invoke('attr', 'src')
       .should('include', '200')
   });
 
   it('Selected Status 100 ', () => {
     cy.chooseReactSelectOption('#selector-status', '100', '100');
-    cy.get('p').contains(statuses[100].message);
-    cy.get('img').invoke('attr', 'src')
+    cy.get('p[data-cy="status-message"]').contains(statuses[100].message);
+    cy.get('img[data-cy="status-image"]').invoke('attr', 'src')
       .should('include', '100')
   });
 
@@ -21,10 +21,10 @@ describe('My First Test', () => {
     cy.statusSelector('#selector-status','404',statuses[404].message);
   });
 
-  Object.keys(statuses).map(statusCode=>{
-    it(`Selected Status ${statusCode} `, () => {
-      cy.statusSelector('#selector-status',`${statusCode}`,statuses[statusCode].message);
-    });
-  })
+  // Object.keys(statuses).map(statusCode=>{
+  //   it(`Selected Status ${statusCode} `, () => {
+  //     cy.statusSelector('#selector-status',`${statusCode}`,statuses[statusCode].message);
+  //   });
+  // })
  
 });
