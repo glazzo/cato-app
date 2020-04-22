@@ -1,24 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
-
+import Select from 'react-select'
+import statuses from './statuses';
 function App() {
+const [currentStatus, setCurrentStatus] = useState(0);
+const [currentMessage, setCurrentMessage] = useState('');
+
+  const options = Object.keys(statuses).map(status=> ({value:status,label:status}));
+  const handleOnChange = (elem) => {
+    setCurrentStatus(elem.value);
+    setCurrentMessage(statuses[elem.value].message)
+  }
+ 
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>Tell me what this status mean</h1>
       </header>
+      <article>
+        <Select className="select-status" options={options} onChange={handleOnChange} />
+        <p>{currentMessage}</p>
+        <img className="img-cato" src={`https://http.cat/${currentStatus}`} alt={`cato-${currentMessage}`}/>
+      </article>
     </div>
   );
 }
