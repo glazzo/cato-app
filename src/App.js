@@ -1,28 +1,29 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './App.css';
-import Select from 'react-select'
-import statuses from './statuses';
-function App() {
-const [currentStatus, setCurrentStatus] = useState(0);
-const [currentMessage, setCurrentMessage] = useState('');
+import {Switch, Route, Link} from 'react-router-dom';
+import StatusMean from './pages/statusMean';
 
-  const options = Object.keys(statuses).map(status=> ({value:status,label:status}));
-  const handleOnChange = (elem) => {
-    setCurrentStatus(elem.value);
-    setCurrentMessage(statuses[elem.value].message)
-  }
- 
+const Home = () => (
+  <article>
+    <h1>Welcome</h1>
+    <img src="https://i.makeagif.com/media/1-25-2018/uKJ-SD.gif" alt="otrogato"/>
+  </article>
+ );
+function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Tell me what this status mean</h1>
-      </header>
-      <article>
-        <Select id="selector-status" options={options} onChange={handleOnChange} />
-        <p data-cy="status-message">{currentMessage}</p>
-        <img data-cy="status-image" className="img-cato" src={`https://http.cat/${currentStatus}`} alt={`cato-${currentMessage}`}/>
-      </article>
-    </div>
+    <React.Fragment>
+      <nav>
+        <ul>
+          <li><Link to="/" data-cy="home">Home</Link></li>
+          <li><Link to="/status" data-cy="status">Status</Link></li>
+        </ul>
+      </nav>
+      <Switch>      
+        <Route exact path="/status" component={StatusMean} />
+        <Route  path="/" component={Home} />
+      </Switch>
+    </React.Fragment>
   );
 }
 

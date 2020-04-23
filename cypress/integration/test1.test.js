@@ -1,7 +1,7 @@
 import statuses from '../../src/statuses';
 describe('My First Test', () => {
   beforeEach(() => {
-    cy.visit('/');
+    cy.visit('/status');
   });
   it('Selected Status 200 ', () => {
     cy.chooseReactSelectOption('#selector-status', '200', '200');
